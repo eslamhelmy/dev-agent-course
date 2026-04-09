@@ -1,0 +1,4 @@
+# Progress Log
+# Both you and the agent write here. Append-only.
+
+[YYYY-MM-DD HH:MM] Agent initialized. Reading state files.

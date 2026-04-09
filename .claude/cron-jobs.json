@@ -1,0 +1,11 @@
+{
+  "jobs": [
+    { "name": "Daily Planner", "cron": "33 17 * * *", "skill": "daily-planner", "status": "active" },
+    { "name": "Git Reviewer", "cron": "3 12 * * *", "skill": "git-reviewer", "status": "active" },
+    { "name": "PR Reviewer", "cron": "0 9,13,17 * * *", "skill": "pr-reviewer", "status": "active" },
+    { "name": "Standup Generator", "cron": "30 8 * * 1-5", "skill": "standup-generator", "status": "active" },
+    { "name": "Meeting Ingest", "cron": "37 18 * * *", "skill": "meeting-ingest", "status": "active" },
+    { "name": "Learning Loop", "cron": "47 23 * * *", "skill": "learning-loop", "status": "active" },
+    { "name": "Heartbeat", "cron": "7 */2 * * *", "skill": "heartbeat", "status": "active" }
+  ]
+}
