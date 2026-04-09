@@ -18,7 +18,7 @@ your-project/
     learnings.md
     auto-resolver.md
     priority-map.md
-    cron-jobs.json                   # 6 jobs
+    cron-jobs.json                   # 7 jobs
     failed-jobs.log
     settings.local.json
     hooks/
@@ -91,7 +91,7 @@ Watch progress.txt and failed-jobs.log after the first few scheduled runs. Adjus
 
 ## Deployment Phases
 
-Do not go from zero to 12 cron jobs overnight. Deploy in phases.
+Do not go from zero to 7 cron jobs overnight. Deploy in phases.
 
 ### Phase 1: Prototype (You are here)
 - Run skills manually with "Run the X skill"

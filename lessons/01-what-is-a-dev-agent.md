@@ -21,7 +21,7 @@ Here is the `.claude/` directory of a fully operational dev agent:
   error-log.md               # Past mistakes -- never repeat
   auto-resolver.md           # What to decide alone vs escalate
   priority-map.md            # 4 priority levels with rules
-  cron-jobs.json             # 6 scheduled jobs
+  cron-jobs.json             # 7 scheduled jobs
   failed-jobs.log            # Dead-letter queue
   hooks/
     stop-telegram.sh         # Sends notification when agent finishes
@@ -36,7 +36,7 @@ Here is the `.claude/` directory of a fully operational dev agent:
     heartbeat/SKILL.md
 ```
 
-This agent has 6 cron jobs running. It sends Telegram notifications when tasks finish. It monitors GitHub repos, reviews PRs, generates standups, ingests meeting transcripts, and self-heals when something breaks. It learns from corrections and gets better every week.
+This agent has 7 scheduled jobs running. It sends Telegram notifications when tasks finish. It monitors GitHub repos, reviews PRs, generates standups, ingests meeting transcripts, and self-heals when something breaks. It learns from corrections and gets better every week.
 
 ---
 
@@ -84,7 +84,7 @@ This loop is the universal pattern. Every skill you build in this course follows
 | **Learning** | Forgets between sessions | Writes corrections to files, never repeats mistakes |
 | **Monitoring** | None | Heartbeat checks itself every 2 hours |
 | **Recovery** | You restart the conversation | Agent detects failures, retries, logs to dead-letter queue |
-| **Scope** | Single task | 12+ concurrent scheduled workflows |
+| **Scope** | Single task | 7+ concurrent scheduled workflows |
 
 A chatbot is a tool you use. An agent is a system that works for you.
 
@@ -108,7 +108,7 @@ Every piece of agent state lives in plain text files inside `.claude/`. Tasks, p
 
 ---
 
-## The 6 Scheduled Jobs
+## The 7 Scheduled Jobs
 
 Here is what the finished agent runs on autopilot:
 
@@ -117,9 +117,12 @@ Here is what the finished agent runs on autopilot:
 | Daily Planner | 5:33 PM | Reviews calendar, scores the day, plans tomorrow |
 | Git Reviewer | Noon | Summarizes commits across your repos |
 | PR Reviewer | 3x daily | Monitors open PRs, flags risks |
-| Meeting Ingest | 6:37 PM | Extracts action items from meeting transcripts |
 | Standup Generator | 8 AM | Generates daily standup from tasks and progress |
+| Meeting Ingest | 6:37 PM | Extracts action items from meeting transcripts |
+| Learning Loop | 11:47 PM | Consolidates corrections into permanent rules |
 | Heartbeat | Every 2h | Self-checks: crons alive, state valid, no stale tasks |
+
+Browser Verify is an on-demand skill -- called by other skills after changes, not on a schedule.
 
 ---
 

@@ -18,7 +18,7 @@ your-project/
     learnings.md
     auto-resolver.md
     priority-map.md
-    cron-jobs.json                   # 5 jobs
+    cron-jobs.json                   # 6 jobs
     failed-jobs.log
     settings.local.json
     hooks/

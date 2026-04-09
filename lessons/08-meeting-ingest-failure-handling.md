@@ -18,7 +18,7 @@ your-project/
     learnings.md
     auto-resolver.md
     priority-map.md
-    cron-jobs.json                   # 4 jobs
+    cron-jobs.json                   # 5 jobs
     settings.local.json
     hooks/
       stop-telegram.sh
