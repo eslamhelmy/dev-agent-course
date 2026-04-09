@@ -47,6 +47,18 @@ This repo includes two hooks:
 
 Hooks are registered in `.claude/settings.local.json` (included in this repo). To enable Telegram notifications, set the `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` environment variables.
 
+## Permissions
+
+The `settings.local.json` includes a permissions allowlist for safe operations — read-only tools and git read commands run without prompting. Force pushes and destructive deletes are explicitly denied.
+
+Once you trust the agent after running it for a while, you can switch to `bypassPermissions` mode to skip all prompts:
+
+```bash
+claude --permission-mode bypassPermissions
+```
+
+Writes to `.git` and `.claude` still prompt even in bypass mode (safety net). Start with the default allowlist, expand it as you build trust.
+
 ## Skills
 
 Every skill is a `SKILL.md` file with four sections:
