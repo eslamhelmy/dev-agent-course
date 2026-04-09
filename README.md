@@ -30,7 +30,6 @@ A forkable template for building a persistent, autonomous developer agent with [
   progress.txt                       # Action log
   error-log.md                       # Past mistakes
   learnings.md                       # Patterns the agent discovered
-  auto-resolver.md                   # What needs human approval
   priority-map.md                    # P0-P3 priority definitions
   cron-jobs.json                     # Scheduled skills
   hooks/

@@ -32,7 +32,6 @@ graph TD
 | `progress.txt` | Action log | Audit trail of everything the agent did | Append-only; both you and agent write |
 | `error-log.md` | Past mistakes | Agent reads at startup to avoid repeating | Agent appends inline when corrected |
 | `learnings.md` | Patterns, mistakes, preferences | Compound improvement over time | Agent appends inline; learning-loop consolidates |
-| `auto-resolver.md` | Autonomy boundary | Defines what needs human approval | Edit manually; agent suggests additions |
 | `priority-map.md` | P0-P3 priority definitions | Agent ranks work consistently | Edit manually to match your workflow |
 | `cron-jobs.json` | Scheduled skill definitions | Skills run on autopilot | Edit to add/remove/reschedule skills |
 

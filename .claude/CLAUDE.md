@@ -10,7 +10,6 @@ At the start of every session, read these files in order:
    - `.claude/preferences.md` -- who you are, how you communicate, what not to do
    - `.claude/error-log.md` -- past mistakes (read carefully, never repeat them)
    - `.claude/priority-map.md` -- how to rank work
-   - `.claude/auto-resolver.md` -- what to decide alone vs escalate
 
 2. Read agent state:
    - `.claude/tasks-active.md` -- pending work
@@ -48,7 +47,6 @@ All state is file-based. No external database required.
   progress.txt           # Action log (append-only)
   error-log.md           # Past mistakes -- don't repeat
   learnings.md           # Accumulated patterns and preferences
-  auto-resolver.md       # Autonomy boundary
   priority-map.md        # Priority levels and rules
   cron-jobs.json         # Scheduled skill definitions
   hooks/
@@ -74,9 +72,10 @@ All state is file-based. No external database required.
 
 ## Autonomy Rules
 
-See `.claude/auto-resolver.md` for full rules. Summary:
+Summary:
 - Autonomous: generate drafts, query data, update state files, schedule jobs
 - Needs approval: push code, send messages, create events, publish content
+- Claude Code's built-in permission system handles enforcement. Hooks add extra safety (permission-gate.sh blocks force pushes).
 
 ## Skills
 
@@ -117,7 +116,7 @@ Learning happens in real-time, NOT on a cron schedule.
    - Bug/error you made --> `.claude/error-log.md`
    - Approach that worked well --> `.claude/learnings.md` (Patterns)
    - Approach that failed --> `.claude/learnings.md` (Mistakes)
-   - Autonomy boundary change --> `.claude/auto-resolver.md`
+   - "You should ask me before doing X" --> `.claude/preferences.md` (Don'ts section)
 
 **When you complete a task:**
 - Append one line to `progress.txt`
