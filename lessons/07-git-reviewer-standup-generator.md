@@ -1,6 +1,6 @@
 # Lesson 07 -- Git Reviewer + Standup Generator
 
-You built a PR reviewer in lesson 06 using the signal-query-prioritize-report pattern. Now you build two more skills. The first follows the same pattern with a different data source. The second demonstrates something more powerful: skill composition -- a skill that combines outputs from other skills into something new.
+You build two more skills. The git reviewer follows the same signal-query-prioritize-report pattern with a different data source. The standup generator demonstrates skill composition -- a skill that combines outputs from other skills into something new.
 
 ---
 
@@ -41,7 +41,7 @@ your-project/
 | **Input** | Git repos | Git commits + tasks-completed.md + tasks-active.md + progress.txt |
 | **Output** | Commit digest with WHAT/WHY/IMPACT | Ready-to-paste standup message |
 
-The git reviewer is another instance of the pattern you already know. The standup generator is new -- it doesn't query external data. It reads what the agent already knows and composes a standup from it. This is skill composition: one skill's output becomes another skill's input.
+The git reviewer is another instance of the pattern you already know. The standup generator is new -- it reads what the agent already knows and composes a standup from it.
 
 ---
 
@@ -127,7 +127,7 @@ mkdir -p .claude/skills/git-reviewer
 
 ## Build It: Standup Generator Skill
 
-This is where it gets interesting. The standup generator doesn't query any external API. It reads data the agent already has -- git commits from yesterday's reviewer, completed tasks, active tasks, and progress log -- and composes a ready-to-paste standup.
+The standup generator doesn't query any external API. It reads data the agent already has -- git commits from yesterday's reviewer, completed tasks, active tasks, and progress log -- and composes a ready-to-paste standup.
 
 **Intent:** Create a skill that generates your daily standup by combining existing agent data.
 
@@ -288,41 +288,7 @@ This means:
 
 ## Checkpoint
 
-After this lesson, your project should contain:
-
-```
-your-project/
-  CLAUDE.md
-  .claude/
-    preferences.md
-    tasks-active.md
-    tasks-completed.md
-    progress.txt
-    error-log.md
-    learnings.md
-    auto-resolver.md
-    priority-map.md
-    cron-jobs.json                   # 4 jobs
-    settings.local.json
-    hooks/
-      stop-telegram.sh
-      permission-gate.sh
-    skills/
-      daily-planner/
-        SKILL.md
-      pr-reviewer/
-        SKILL.md
-      git-reviewer/
-        SKILL.md                     # NEW
-      standup-generator/
-        SKILL.md                     # NEW
-```
-
-The cron schedule is now:
-- 8:30 AM -- Standup generator (reads yesterday's data)
-- 9 AM, 1 PM, 5 PM -- PR reviewer
-- 12:00 PM -- Git reviewer
-- 5:33 PM -- Daily planner
+Your `.claude/` directory should now contain: `skills/git-reviewer/SKILL.md`, `skills/standup-generator/SKILL.md`, and `cron-jobs.json` with 4 jobs (daily-planner, pr-reviewer, git-reviewer, standup-generator).
 
 ---
 

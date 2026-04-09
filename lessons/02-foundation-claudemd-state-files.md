@@ -1,6 +1,6 @@
 # Lesson 02 -- The Foundation: CLAUDE.md + State Files
 
-Every agent needs a brain and a memory. The brain is `CLAUDE.md` -- the master instruction file Claude Code reads at startup. The memory is a set of state files that persist between sessions. Without these, you have a chatbot that forgets everything. With them, you have an agent that picks up where it left off.
+The brain is `CLAUDE.md` -- the master instruction file Claude Code reads at startup. The memory is a set of state files that persist between sessions.
 
 ---
 
@@ -195,70 +195,7 @@ This pattern works because Claude Code responds to clear, specific instructions.
 
 ## Checkpoint
 
-After this lesson, your project should contain:
-
-**CLAUDE.md** (project root):
-```markdown
-# Dev Agent
-
-## Session Startup
-
-1. Read agent state:
-   - `.claude/preferences.md` -- who I am and my rules
-   - `.claude/tasks-active.md` -- pending work
-   - `.claude/progress.txt` -- what happened recently
-
-2. Resume any in-progress work from `tasks-active.md`
-
-## State Management Rules
-
-- Read before acting -- always check current state before processing
-- Update in same turn -- when you act, update the state file immediately
-- Append-only logs -- progress.txt never gets overwritten
-
-## After Task Completion
-
-- Append one line to progress.txt with what was done and when
-- Update tasks-active.md to reflect current status
-```
-
-**.claude/preferences.md:**
-```markdown
-# Preferences
-
-## Identity
-- Name: [Your Name]
-- Role: [Your Role]
-- Timezone: [Your Timezone]
-
-## Communication
-- Default notification channel: Telegram
-- Tone: Direct, technical, no fluff
-
-## Don'ts
-- Never push code without approval
-- Never send messages on my behalf without approval
-- Never delete files without confirmation
-- Never commit secrets or credentials
-```
-
-**.claude/tasks-active.md:**
-```markdown
-# Active Tasks
-
-## TASK-001: Set up dev agent foundation
-- Status: in-progress
-- Priority: P1
-- Created: [today's date]
-- Description: Create CLAUDE.md, state files, and basic agent infrastructure
-```
-
-**.claude/progress.txt:**
-```
-[timestamp] -- Agent foundation created: CLAUDE.md, tasks-active.md, preferences.md, progress.txt
-```
-
-Four files. That is your agent's foundation.
+Your project should now contain: `CLAUDE.md`, `.claude/preferences.md`, `.claude/tasks-active.md`, `.claude/progress.txt`.
 
 ---
 

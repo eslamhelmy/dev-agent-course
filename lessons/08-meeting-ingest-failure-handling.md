@@ -1,6 +1,6 @@
 # Lesson 08 -- Meeting Ingest + Failure Handling
 
-You have four skills running. But what happens when one of them fails? A missing API key. A rate limit. A malformed response. A service outage. Until now, you have ignored failure. This lesson fixes that. You will build the meeting ingest skill and, more importantly, add failure handling infrastructure to the entire agent.
+What happens when a skill fails? A missing API key, a rate limit, a malformed response. This lesson builds the meeting ingest skill and adds failure handling infrastructure to the entire agent.
 
 ---
 
@@ -54,20 +54,9 @@ This pattern applies to any external data source: meeting notes, Slack threads, 
 
 ## See It: Why Failure Handling Matters
 
-Here is what happens without failure handling:
-
-1. The standup generator skill runs at 8 AM. An API returns a 429 (rate limit).
-2. The skill crashes silently. No report is generated.
-3. You do not know it failed. No notification. No log entry.
-4. The next day, same thing. Now you have missed 2 days of standup generation and do not know it.
-
-With failure handling:
-
-1. The standup generator skill runs at 8 AM. An API returns a 429.
-2. The skill catches the error. It retries once after 30 seconds.
-3. If it still fails, it logs the failure to `failed-jobs.log` with the error details.
-4. It sends a Telegram notification: "Standup generator failed: rate limit exceeded."
-5. The heartbeat skill (lesson 09) checks failed-jobs.log every 2 hours and can retry.
+- **Without it:** A skill crashes silently, no log entry, no notification -- you miss output for days without knowing.
+- **With it:** The skill retries once, logs to `failed-jobs.log` with full context, and sends a Telegram alert.
+- **Recovery:** The heartbeat skill (lesson 09) checks `failed-jobs.log` every 2 hours and can retry failed jobs.
 
 ## See It: The Four Failure Mechanisms
 
@@ -299,47 +288,7 @@ Keep all existing entries. The file should now have 5 jobs total.
 
 ## Checkpoint
 
-After this lesson, your project should contain:
-
-```
-your-project/
-  CLAUDE.md                          # Updated with failure handling rules
-  .claude/
-    preferences.md
-    tasks-active.md
-    tasks-completed.md
-    progress.txt
-    error-log.md
-    learnings.md
-    auto-resolver.md
-    priority-map.md
-    cron-jobs.json                   # 5 jobs
-    failed-jobs.log                  # NEW
-    settings.local.json
-    hooks/
-      stop-telegram.sh
-      permission-gate.sh
-    skills/
-      daily-planner/
-        SKILL.md
-      pr-reviewer/
-        SKILL.md
-      git-reviewer/
-        SKILL.md
-      standup-generator/
-        SKILL.md
-      meeting-ingest/
-        SKILL.md                     # NEW
-```
-
-The cron schedule is now:
-- 8:00 AM -- Standup generator
-- 9 AM, 1 PM, 5 PM -- PR reviewer
-- 12:00 PM -- Git reviewer
-- 5:33 PM -- Daily planner
-- 6:37 PM -- Meeting ingest
-
-And every skill now has a safety net: retries, idempotency checks, dead-letter logging, and graceful degradation.
+Your `.claude/` directory should now contain: `skills/meeting-ingest/SKILL.md`, `failed-jobs.log`, and `cron-jobs.json` with 5 jobs. CLAUDE.md should include failure handling rules.
 
 ---
 

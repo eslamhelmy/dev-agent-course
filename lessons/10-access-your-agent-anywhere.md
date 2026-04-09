@@ -2,8 +2,6 @@
 
 Your agent runs on your machine. But you're not always at your machine. This lesson sets up phone access so you can check on your agent, approve permissions, and read reports from anywhere.
 
-We'll also cover what NOT to use — tools that sound great but break in practice.
-
 ## Where You Are
 
 ```
@@ -35,28 +33,7 @@ You have a full agent with 6 skills, hooks that notify your phone, and a heartbe
 
 ## What You Are Adding
 
-Phone access to your agent via SSH — plus understanding why some alternatives don't work.
-
----
-
-## Why Not Claude Channels / Cowork Dispatch?
-
-Before we set up the reliable solution, let's address two tools you might have seen:
-
-**Claude Channels** — lets you message Claude Code from a web interface or another device. Sounds perfect for remote agent access.
-
-**Cowork Dispatch** — lets Claude Desktop dispatch tasks to Claude Code. Sounds perfect for orchestration.
-
-**The reality after testing both extensively:**
-- Connections disconnect randomly, especially during long-running tasks
-- When the connection drops mid-task, the agent loses context and can't resume cleanly
-- Reconnection doesn't restore the session state — you start from scratch
-- The communication layer is fragile under real workloads (multiple cron jobs, background agents, heavy context)
-- It breaks the momentum — you're debugging the communication tool instead of doing actual work
-
-**The verdict:** These tools are promising but not production-ready for autonomous agents that need to run reliably for hours or days. They work fine for short, interactive sessions. They break for the always-on agent pattern this course teaches.
-
-**What works instead:** SSH. It's 40 years old. It doesn't disconnect. It doesn't lose state. tmux keeps your session alive. Tailscale makes it accessible from anywhere. Boring, reliable, done.
+Phone access to your agent via SSH using tmux, Tailscale, and a mobile SSH client.
 
 ---
 
@@ -141,8 +118,6 @@ ping eslams-macbook
 3. Connect
 4. Run: `tmux attach -t agent`
 
-You're now looking at your Claude Code agent from your phone. Same session. Same context. Same cron jobs running.
-
 ---
 
 ## Step 4: Survive Reboots (Optional)
@@ -187,13 +162,7 @@ You want to check details? Open Termius, `tmux attach -t agent`, you're in.
 
 ## Checkpoint
 
-After this lesson, you have:
-- tmux keeping your agent session alive
-- Tailscale making your machine reachable from anywhere
-- Termius on your phone for SSH access
-- Understanding of why Channels/Cowork aren't reliable for this use case
-
-No new .claude/ files — this lesson is about infrastructure around the agent, not inside it.
+You now have: tmux keeping your agent session alive, Tailscale making your machine reachable from anywhere, and a mobile SSH client for phone access. No new `.claude/` files -- this lesson is about infrastructure around the agent.
 
 ---
 

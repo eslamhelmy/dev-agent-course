@@ -1,6 +1,6 @@
 # Lesson 05 -- Skills and Scheduling
 
-You have an agent that remembers, learns, and has safety gates. Now you give it jobs. A skill is a complete workflow defined in a single markdown file. A cron job triggers that skill on a schedule. Together, they turn your agent from reactive (waits for you) to proactive (works on its own).
+A skill is a complete workflow defined in a single markdown file. A cron job triggers that skill on a schedule. Together, they turn your agent from reactive (waits for you) to proactive (works on its own).
 
 ---
 
@@ -54,7 +54,7 @@ The `cron-jobs.json` file defines which skills run and when. Each entry specifie
 }
 ```
 
-Key concept: **cron jobs expire after 7 days.** This is a safety feature. If your agent goes down and comes back up two weeks later, it will not have 14 days of stale cron jobs trying to execute. The heartbeat skill (lesson 09) renews all crons before they expire.
+Key concept: **cron jobs expire after 7 days.** If your agent goes down and comes back up two weeks later, it will not have 14 days of stale cron jobs trying to execute. The heartbeat skill (lesson 09) renews all crons before they expire.
 
 **Important:** `cron-jobs.json` is a convention file, not an OS-level cron system. Claude Code does not execute skills on a schedule by itself. For scheduling to work, you need a running Claude Code session -- typically inside a persistent tmux session (covered in lesson 10). Within that session, you use Claude Code's built-in scheduling (e.g., `/schedule`) to create timed prompts that trigger each skill. The heartbeat skill recreates any expired schedule entries, but it still requires a running Claude Code session to do so.
 
@@ -322,45 +322,12 @@ and follow its instructions.
 
 ## Checkpoint
 
-After this lesson, your project should contain:
-
-```
-your-project/
-  CLAUDE.md                          # Updated with skills + scheduling
-  .claude/
-    preferences.md
-    tasks-active.md
-    tasks-completed.md               # NEW
-    progress.txt
-    error-log.md
-    learnings.md
-    auto-resolver.md
-    priority-map.md                  # NEW
-    cron-jobs.json                   # NEW
-    settings.local.json
-    hooks/
-      stop-telegram.sh
-      permission-gate.sh
-    skills/
-      daily-planner/
-        SKILL.md                     # NEW
-```
-
-The key new files:
-
-**.claude/priority-map.md** -- Four priority levels with decision rules.
-
-**.claude/cron-jobs.json** -- Schedule definitions. One entry so far.
-
-**.claude/skills/daily-planner/SKILL.md** -- Your first complete skill with Input, Process, Output, and State Update sections.
-
-**.claude/tasks-completed.md** -- Archive for finished tasks.
+Your `.claude/` directory should now contain: `priority-map.md`, `tasks-completed.md`, `cron-jobs.json`, `skills/daily-planner/SKILL.md` (in addition to all previous files). CLAUDE.md should include skills and scheduling sections.
 
 ---
 
 ## Fork It
 
-- **Different schedule?** Change `"33 17 * * *"` to whatever time works for your end-of-day. Use crontab.guru to build expressions.
 - **Include calendar data?** If you have Google Calendar or Outlook access, add a step that reads today's meetings before scoring.
 - **Weekly planner instead?** Create a `weekly-planner/SKILL.md` that runs on Friday afternoon and plans the entire next week.
 - **Different scoring criteria?** Modify the scoring section to weight what matters to you: code reviews completed, PRs merged, documentation written.

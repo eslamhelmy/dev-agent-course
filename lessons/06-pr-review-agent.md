@@ -1,8 +1,6 @@
 # Lesson 06 -- PR Review Agent
 
-You have a daily planner running on schedule. Now you build a skill that monitors the outside world: a PR review agent that watches your GitHub repos, summarizes open pull requests, and flags risks before they become problems.
-
-This lesson introduces a pattern you will reuse: **signal, query, prioritize, report.**
+This lesson introduces a pattern you will reuse: **signal, query, prioritize, report.** You build a PR review agent that watches your GitHub repos, summarizes open pull requests, and flags risks before they become problems.
 
 ---
 
@@ -42,8 +40,6 @@ Most monitoring skills follow the same four steps:
 4. **Report** -- The skill produces output. A summary, a notification, a state update.
 
 The PR reviewer is a clean example. The cron fires (signal). It queries GitHub for open PRs (query). It flags large diffs, missing tests, security files, and stale PRs (prioritize). It writes a digest and optionally notifies you (report).
-
-This pattern scales. Email triage, git review, deployment monitoring -- they all follow it. Learn it once, apply it everywhere.
 
 ---
 
@@ -248,33 +244,7 @@ in preferences.md, or use a well-known public repo like cli/cli as a test.
 
 ## Checkpoint
 
-After this lesson, your project should contain:
-
-```
-your-project/
-  CLAUDE.md
-  .claude/
-    preferences.md                   # Updated with GitHub repos
-    tasks-active.md
-    tasks-completed.md
-    progress.txt
-    error-log.md
-    learnings.md
-    auto-resolver.md
-    priority-map.md
-    cron-jobs.json                   # 2 jobs: daily-planner, pr-reviewer
-    settings.local.json
-    hooks/
-      stop-telegram.sh
-      permission-gate.sh
-    skills/
-      daily-planner/
-        SKILL.md
-      pr-reviewer/
-        SKILL.md                     # NEW
-```
-
-The new skill at `.claude/skills/pr-reviewer/SKILL.md` follows the full Input, Process, Output, State Update structure. The cron runs three times on weekdays (9 AM, 1 PM, 5 PM).
+Your `.claude/` directory should now contain: `skills/pr-reviewer/SKILL.md`, updated `preferences.md` with GitHub repos, and `cron-jobs.json` with 2 jobs (daily-planner, pr-reviewer).
 
 ---
 

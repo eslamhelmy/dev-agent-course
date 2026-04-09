@@ -1,6 +1,6 @@
 # Lesson 09 -- The Heartbeat: Self-Healing Agent
 
-You have five skills, a failure log, and a growing state directory. But who watches the watcher? If a cron job silently expires, if a state file gets corrupted, if tasks go stale -- who catches it? The heartbeat skill. It runs every 2 hours and checks everything: cron health, state validity, task deadlines, failure accumulation, and context freshness. It is the safety net for the entire system.
+Who watches the watcher? If a cron job silently expires, if a state file gets corrupted, if tasks go stale -- who catches it? The heartbeat skill runs every 2 hours and checks everything: cron health, state validity, task deadlines, failure accumulation, and context freshness.
 
 ---
 
@@ -41,18 +41,7 @@ your-project/
 
 ## See It: Why Agents Need Self-Monitoring
 
-Three things degrade over time in an always-running agent:
-
-**1. Cron jobs expire.**
-Every cron job in your system has a 7-day expiry. This is a safety feature -- you do not want stale crons from two months ago still trying to fire. But it means someone needs to renew them. The heartbeat does this.
-
-**2. State goes stale.**
-A task has been in tasks-active.md for 12 days with no progress update. Progress.txt has not been written to in 48 hours. Failed-jobs.log has 15 unresolved failures. These are all signs of a sick agent. The heartbeat detects them.
-
-**3. Context degrades.**
-In long-running sessions, Claude Code compacts context to stay within its window. During compaction, nuances get lost. The heartbeat reminds the agent to re-read critical files after compaction.
-
-Without a heartbeat, problems accumulate silently until something visibly breaks. With a heartbeat, problems are caught within 2 hours.
+Cron jobs expire, state goes stale, and context degrades during compaction -- without a heartbeat checking every 2 hours, these problems accumulate silently until something visibly breaks.
 
 ```mermaid
 graph TD
@@ -284,50 +273,7 @@ state of all files.
 
 ## Checkpoint
 
-After this lesson, your project should contain:
-
-```
-your-project/
-  CLAUDE.md
-  .claude/
-    preferences.md
-    tasks-active.md
-    tasks-completed.md
-    progress.txt
-    error-log.md
-    learnings.md
-    auto-resolver.md
-    priority-map.md
-    cron-jobs.json                   # 6 jobs
-    failed-jobs.log
-    settings.local.json
-    hooks/
-      stop-telegram.sh
-      permission-gate.sh
-    skills/
-      daily-planner/
-        SKILL.md
-      pr-reviewer/
-        SKILL.md
-      git-reviewer/
-        SKILL.md
-      standup-generator/
-        SKILL.md
-      meeting-ingest/
-        SKILL.md
-      heartbeat/
-        SKILL.md                     # NEW
-```
-
-The cron schedule is now:
-- Every 2h -- Heartbeat (the safety net)
-- 8:00 AM -- Standup generator
-- 9 AM, 1 PM, 5 PM -- PR reviewer
-- 12:00 PM -- Git reviewer
-- 5:33 PM -- Daily planner
-- 6:37 PM -- Meeting ingest
-
-The heartbeat watches everything else. If any job fails, if any state goes stale, if any cron expires -- the heartbeat catches it within 2 hours.
+Your `.claude/` directory should now contain: `skills/heartbeat/SKILL.md` and `cron-jobs.json` with 6 jobs (daily-planner, pr-reviewer, git-reviewer, standup-generator, meeting-ingest, heartbeat).
 
 ---
 

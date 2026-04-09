@@ -2,8 +2,6 @@
 
 You are about to build a personal developer agent. Not a chatbot. Not an autocomplete tool. An autonomous system that runs on your machine, monitors your work, makes decisions, and reports back to your phone.
 
-This lesson is observation only. You will not build anything yet. You will see the finished system, understand the mental model, and know exactly what you are working toward.
-
 ---
 
 ## The Finished Agent
@@ -70,7 +68,7 @@ graph LR
 6. **Update State** -- It writes results to the appropriate state files. progress.txt gets a new line. tasks-active.md gets updated.
 7. **Report** -- It sends a notification. Telegram, Slack, or just a log entry.
 
-This loop is the universal pattern. Every skill you build in this course follows it. The daily planner follows it. The PR reviewer follows it. The heartbeat follows it. The structure never changes -- only the trigger and the action differ.
+Every skill you build in this course follows this loop.
 
 ---
 
@@ -94,17 +92,9 @@ A chatbot is a tool you use. An agent is a system that works for you.
 
 Three things make Claude Code suitable for this:
 
-**1. CLAUDE.md -- The Instruction File**
-
-Claude Code reads a `CLAUDE.md` file at session startup. This is your agent's master instruction set. It defines what to read, what rules to follow, and how to behave. Without it, you have a chatbot. With it, you have an agent.
-
-**2. Hooks -- Deterministic Behavior**
-
-Claude Code supports hooks: shell scripts or commands that fire on specific events. When the agent finishes a task, a hook sends a Telegram message. When it is about to execute a dangerous tool, a hook can block it. Hooks make behavior predictable and safe.
-
-**3. File-Based State -- No Database Required**
-
-Every piece of agent state lives in plain text files inside `.claude/`. Tasks, progress, learnings, errors, schedules -- all readable, all version-controlled, all portable. You can inspect the agent's entire brain by reading a directory.
+- **CLAUDE.md** -- The master instruction file Claude Code reads at startup. It defines what to read, what rules to follow, and how to behave.
+- **Hooks** -- Shell scripts that fire on specific events, making behavior deterministic: notifications on completion, blocking dangerous operations.
+- **File-based state** -- All agent state lives in plain text files inside `.claude/`, readable, version-controlled, and portable.
 
 ---
 

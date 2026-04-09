@@ -1,6 +1,6 @@
 # Lesson 03 -- Hooks: Making It Deterministic
 
-State files give the agent memory. Hooks give it reflexes. A hook is a command that fires automatically when a specific event occurs in Claude Code. The agent does not choose whether to run a hook -- it runs every time the event fires. This is what makes behavior deterministic instead of probabilistic.
+A hook is a command that fires automatically when a specific event occurs in Claude Code. The agent does not choose whether to run a hook -- it runs every time the event fires. This is what makes behavior deterministic instead of probabilistic.
 
 ---
 
@@ -249,87 +249,7 @@ exit code 2.
 
 ## Checkpoint
 
-After this lesson, your project should contain:
-
-```
-your-project/
-  CLAUDE.md
-  .claude/
-    preferences.md
-    tasks-active.md
-    progress.txt
-    settings.local.json
-    hooks/
-      stop-telegram.sh
-      permission-gate.sh
-```
-
-**.claude/hooks/stop-telegram.sh:**
-```bash
-#!/bin/bash
-
-TELEGRAM_BOT_TOKEN="${TELEGRAM_BOT_TOKEN}"
-TELEGRAM_CHAT_ID="${TELEGRAM_CHAT_ID}"
-
-if [ -z "$TELEGRAM_BOT_TOKEN" ] || [ -z "$TELEGRAM_CHAT_ID" ]; then
-  exit 0
-fi
-
-INPUT=$(cat)
-STOP_REASON=$(echo "$INPUT" | jq -r '.stop_reason // "unknown"')
-
-MESSAGE="Agent finished. Reason: ${STOP_REASON}"
-
-curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
-  -d chat_id="$TELEGRAM_CHAT_ID" \
-  -d text="$MESSAGE" \
-  -d parse_mode="Markdown" > /dev/null 2>&1
-
-exit 0
-```
-
-**.claude/hooks/permission-gate.sh:**
-```bash
-#!/bin/bash
-
-INPUT=$(cat)
-TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // ""')
-TOOL_INPUT=$(echo "$INPUT" | jq -r '.tool_input // {}')
-
-if [ "$TOOL_NAME" = "Bash" ]; then
-  COMMAND=$(echo "$TOOL_INPUT" | jq -r '.command // ""')
-  if echo "$COMMAND" | grep -qE 'git\s+push.*--force.*(main|master)'; then
-    echo "BLOCKED: Force push to main/master is not allowed."
-    exit 2
-  fi
-  if echo "$COMMAND" | grep -qE 'rm\s+-rf\s+/'; then
-    echo "BLOCKED: Recursive delete from root is not allowed."
-    exit 2
-  fi
-fi
-
-exit 0
-```
-
-**.claude/settings.local.json:**
-```json
-{
-  "hooks": {
-    "Stop": [
-      {
-        "type": "command",
-        "command": "bash .claude/hooks/stop-telegram.sh"
-      }
-    ],
-    "PreToolUse": [
-      {
-        "type": "command",
-        "command": "bash .claude/hooks/permission-gate.sh"
-      }
-    ]
-  }
-}
-```
+Your `.claude/` directory should now contain: `preferences.md`, `tasks-active.md`, `progress.txt`, `settings.local.json`, `hooks/stop-telegram.sh`, `hooks/permission-gate.sh`.
 
 ---
 
