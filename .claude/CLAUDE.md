@@ -21,7 +21,7 @@ At the start of every session, read these files in order:
 3. Read scheduling:
    - `.claude/cron-jobs.json` -- job definitions and schedules
 
-4. Recreate cron jobs from `cron-jobs.json` (activate all enabled jobs)
+4. Recreate cron jobs from `cron-jobs.json` using CronCreate for each enabled job. Config in JSON is not activation — each job must be created with CronCreate every session.
 
 5. Resume any in-progress work from `tasks-active.md`
 

@@ -46,15 +46,7 @@ This repo includes two hooks:
 
 - **`permission-gate.sh`** -- Fires on `PreToolUse` (before any tool call). Blocks force pushes to main/master and recursive deletes from root (exit 2). Everything else passes (exit 0).
 
-Register hooks in `.claude/settings.local.json`:
-```json
-{
-  "hooks": {
-    "Stop": [{ "type": "command", "command": "bash .claude/hooks/stop-telegram.sh" }],
-    "PreToolUse": [{ "type": "command", "command": "bash .claude/hooks/permission-gate.sh" }]
-  }
-}
-```
+Hooks are registered in `.claude/settings.local.json` (included in this repo). To enable Telegram notifications, set the `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` environment variables.
 
 ## Skills
 
