@@ -34,13 +34,11 @@ your-project/
 
 The skill evaluates each open PR on five dimensions:
 
-| Check | What It Looks For |
-|---|---|
-| **Size** | Lines changed > 500 |
-| **Security** | Changes to auth, env, secrets, config |
-| **Tests** | No test files modified |
-| **Staleness** | Open for more than 3 days |
-| **Conflicts** | Merge conflict status |
+- **Size** -- Lines changed > 500
+- **Security** -- Changes to auth, env, secrets, config
+- **Tests** -- No test files modified
+- **Staleness** -- Open for more than 3 days
+- **Conflicts** -- Merge conflict status
 
 Each flag gets a severity: high (blocks merge), medium (needs attention), low (informational).
 

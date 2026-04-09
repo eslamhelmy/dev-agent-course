@@ -28,12 +28,10 @@ your-project/
 
 A skill is a SKILL.md file inside `.claude/skills/{skill-name}/`. It defines a complete workflow with four parts:
 
-| Section | What It Contains |
-|---|---|
-| **Input** | What the skill reads before acting |
-| **Process** | Step-by-step instructions for what to do |
-| **Output** | What the skill produces |
-| **State Update** | What files get updated when the skill finishes |
+- **Input** -- What the skill reads before acting
+- **Process** -- Step-by-step instructions for what to do
+- **Output** -- What the skill produces
+- **State Update** -- What files get updated when the skill finishes
 
 Every skill follows the same structure. The daily planner reads your calendar and tasks, scores the day, and writes a summary. The git reviewer reads commit history and writes a digest. Different inputs and outputs, identical structure.
 

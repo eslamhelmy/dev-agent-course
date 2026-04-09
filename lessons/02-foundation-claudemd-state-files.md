@@ -27,15 +27,15 @@ Think of CLAUDE.md as the agent's job description. Without it, Claude Code is a 
 
 ## See It: What State Files Do
 
-State files are plain text files that track what the agent knows and what it has done. They live in a `.claude/` directory inside your project. The agent reads them before acting and updates them after acting.
+State files track what the agent knows and what it has done. They live in `.claude/` and evolve as you use the agent -- you don't design them upfront. You tell Claude Code "I need to track my tasks" and it creates the file.
 
-The core state files:
+Here's what mine evolved into:
 
-| File | Purpose |
-|---|---|
-| `tasks-active.md` | Work in progress |
-| `progress.txt` | Manually-appended action log -- you append entries as you work |
-| `preferences.md` | User identity and rules |
+- **tasks-active.md** -- Current work. You add tasks, the agent moves them to completed when done.
+- **progress.txt** -- A running log. Both you and the agent write to it -- you add manual notes, skills append their output automatically (heartbeat logs, meeting summaries, daily reviews).
+- **preferences.md** -- Who you are, how you work, what not to do. Grows as the agent learns your style.
+
+These are plain text files. No schema, no database. You can read them, edit them, and version-control them. The agent reads them at startup and updates them as it works.
 
 ---
 

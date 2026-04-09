@@ -65,11 +65,9 @@ Hooks use the `command` type -- a shell script that runs on the event.
 
 When a hook runs, its exit code determines what happens next:
 
-| Exit Code | Meaning |
-|---|---|
-| `0` | Success -- continue normally |
-| `1` | Warning -- show a message but continue |
-| `2` | Block -- stop the operation entirely |
+- **Exit 0** -- Success. Continue normally.
+- **Exit 1** -- Warning. Show a message but continue.
+- **Exit 2** -- Block. Stop the operation entirely.
 
 Exit code 2 is your safety net. A `PreToolUse` hook that exits with code 2 will prevent the tool from executing. This is how you stop the agent from doing something dangerous.
 
