@@ -38,27 +38,13 @@ graph TD
 
 ## Hooks
 
-Claude Code emits 9 events during a session. You attach shell scripts to any of them.
+Hooks are shell scripts that fire automatically on Claude Code events. Exit codes control behavior: **0** = continue, **1** = warn, **2** = block the operation.
 
-| Event | When It Fires |
-|-------|---------------|
-| `SessionStart` | Agent session begins |
-| `UserPromptSubmit` | User sends a prompt (before processing) |
-| `PreToolUse` | Before the agent calls any tool |
-| `PostToolUse` | After a tool call completes |
-| `Notification` | Agent generates a notification |
-| `Stop` | Agent finishes its response |
-| `SubagentStop` | A sub-agent finishes |
-| `PreCompact` | Before context compaction |
-| `SessionEnd` | Session is closing |
+This repo includes two hooks:
 
-Exit codes: **0** = continue, **1** = warn, **2** = block the operation.
+- **`stop-telegram.sh`** -- Fires on `Stop` (agent finishes a response). Sends a Telegram message with the last output. Requires `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` env vars. Exits 0 (never blocks).
 
-### Included Hooks
-
-- **`stop-telegram.sh`** -- Fires on `Stop`. Sends a Telegram message when the agent finishes. Requires `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` env vars. Always exits 0 (notifications never block the agent).
-
-- **`permission-gate.sh`** -- Fires on `PreToolUse`. Blocks force pushes to main/master (exit 2) and recursive deletes from root (exit 2). Everything else passes through (exit 0).
+- **`permission-gate.sh`** -- Fires on `PreToolUse` (before any tool call). Blocks force pushes to main/master and recursive deletes from root (exit 2). Everything else passes (exit 0).
 
 Register hooks in `.claude/settings.local.json`:
 ```json

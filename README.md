@@ -17,7 +17,7 @@ A forkable template for building a persistent, autonomous developer agent with [
 
 This repo is the template. The step-by-step course that explains every decision lives on the blog:
 
-**[Read the full course on the blog](https://eslamhelmy.com/blog/dev-agent-course)**
+**[Read the full course on the blog](https://eslamhelmy.tech/blog/dev-agent-course)**
 
 ## What's Inside
 
