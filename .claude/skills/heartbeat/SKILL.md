@@ -64,14 +64,14 @@ Write report to `.claude/reports/heartbeat-[date]-[time].md`
 ## State Update
 
 - Append to progress.txt: `[timestamp] -- Heartbeat: {STATUS}, {flag_count} flags ({high}H/{medium}M/{low}L)`
-- For any expired crons: renew in cron-jobs.json
+- For any missing crons (compare CronList vs cron-jobs.json): recreate via CronCreate
 - If CRITICAL: send notification with HIGH flags
 - If DEGRADED for 3 consecutive heartbeats: send notification
 
 ## Self-Healing Actions
 
 The heartbeat can autonomously:
-- Renew expired cron jobs
+- Recreate expired cron jobs via CronCreate (expired jobs delete themselves after 7 days)
 - Re-read critical files after compaction
 - Retry failed jobs from failed-jobs.log (max 1 retry per heartbeat)
 

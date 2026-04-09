@@ -72,7 +72,7 @@ Skills communicate through shared state files, not by calling each other directl
 
 Cron jobs are defined in `cron-jobs.json`. Each entry has a name, cron expression, skill reference, and status.
 
-Cron jobs expire after 7 days. If your agent restarts after a gap, stale jobs do not pile up. The heartbeat skill runs every 2 hours and renews all crons before they expire.
+Cron jobs expire after 7 days. If your agent restarts after a gap, stale jobs do not pile up. The heartbeat skill runs every 2 hours and recreates any expired crons via CronCreate.
 
 At session startup, the agent reads `cron-jobs.json` and recreates all active jobs. Config in JSON is not activation -- the agent must create the actual cron jobs.
 
@@ -86,7 +86,7 @@ The heartbeat skill is the safety net. Every 2 hours it checks:
 - Can all state files be parsed?
 - Do all referenced SKILL.md files exist?
 
-If something is wrong, the heartbeat can autonomously renew expired crons, retry failed jobs (once), and re-read critical files. It cannot delete files, modify skill logic, or push code -- those require human approval.
+If something is wrong, the heartbeat can autonomously recreate expired crons (via CronCreate — expired jobs are deleted, not paused), retry failed jobs (once), and re-read critical files. It cannot delete files, modify skill logic, or push code -- those require human approval.
 
 ## Adding a New Skill
 
@@ -100,6 +100,29 @@ Add it to cron-jobs.json and register it with the heartbeat.
 ```
 
 Claude Code will create the skill file, update the cron config, and add it to the heartbeat's verification list. Test it manually first ("Run the {name} skill"), then monitor `progress.txt` and `failed-jobs.log` for the first few scheduled runs.
+
+## Running Persistently
+
+The agent needs a session that stays alive. **tmux** keeps your terminal running after disconnect — your agent survives laptop close, SSH drops, and sleep.
+
+```bash
+brew install tmux                    # macOS (or: sudo apt install tmux)
+tmux new -s agent                    # start a session
+claude                               # run the agent inside tmux
+# Ctrl+B then D to detach. tmux attach -t agent to reattach.
+```
+
+This isn't just for the agent — any project, build, or process you run inside tmux stays alive. The agent is one of many things you can keep running.
+
+### Remote Access
+
+**Tailscale** gives your devices a mesh VPN — SSH from your phone to your machine without port forwarding or static IPs.
+
+```bash
+brew install tailscale && sudo tailscale up    # authenticate via browser
+```
+
+**Termius** (iOS/Android) is a mobile SSH client. Connect using your Tailscale IP, then `tmux attach -t agent` — you're in your agent session from your phone.
 
 ## Customization
 

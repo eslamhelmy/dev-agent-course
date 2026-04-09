@@ -102,7 +102,7 @@ Cron jobs are defined in `.claude/cron-jobs.json`. At session startup:
 2. Recreate all enabled cron jobs
 3. Execute any that are overdue
 
-Cron jobs expire after 7 days. The heartbeat skill renews them before they expire.
+Cron jobs expire after 7 days (they delete themselves). The heartbeat skill checks CronList every 2 hours and recreates any missing jobs via CronCreate.
 
 ## Inline Learning (CRITICAL)
 
