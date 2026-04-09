@@ -267,11 +267,4 @@ Your `.claude/` directory should now contain: `preferences.md`, `tasks-active.md
 
 ---
 
-## Fork It
-
-- **Stricter autonomy?** Move items from the Autonomous list to Needs Approval. Some teams want the agent to ask before running any tests.
-- **Looser autonomy?** If you trust the agent with git pushes to feature branches, move that to Autonomous. Keep main/master protected.
-- **Team-specific errors?** Add a section to error-log.md for team-wide mistakes (e.g., "never use the legacy API endpoint").
-- **Different learning categories?** Add sections to learnings.md for domain-specific knowledge (e.g., "Infrastructure Patterns" or "Client Preferences").
-
 Next lesson: you build your first skill and set up the scheduling system.

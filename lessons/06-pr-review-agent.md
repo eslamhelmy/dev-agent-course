@@ -224,13 +224,4 @@ Your `.claude/` directory should now contain: `skills/pr-reviewer/SKILL.md`, upd
 
 ---
 
-## Fork It
-
-- **Different repos?** Edit the repos list in preferences.md. Add as many as you need.
-- **Different thresholds?** Change line count thresholds and stale-day thresholds in preferences.md.
-- **Auto-comment on PRs?** Add a step in the Process section that posts a comment on HIGH-flagged PRs using `gh pr comment`. Note: this requires approval per auto-resolver.md since it sends messages.
-- **Label-based filtering?** Add a step to skip PRs with a "wip" or "draft" label.
-- **Team-specific rules?** Add checks for your team's conventions: required reviewers, branch naming, linked issues.
-- **Slack digest?** Add a final step that posts the summary to a Slack webhook instead of (or in addition to) writing a file.
-
 Next lesson: you build two more monitoring skills using the same pattern -- git reviewer and standup generator.

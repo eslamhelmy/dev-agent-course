@@ -263,13 +263,4 @@ Your `.claude/` directory should now contain: `skills/meeting-ingest/SKILL.md`, 
 
 ---
 
-## Fork It
-
-- **Otter.ai instead of Granola?** Change the meeting source in the Process section. Otter provides transcripts via email or API -- adjust the discovery step accordingly.
-- **Microsoft Teams transcripts?** Teams stores transcripts in OneDrive. Add a discovery step that checks your recent Teams meetings.
-- **Zoom recordings?** Zoom's API provides transcripts for recorded meetings. Add as another source in the priority list.
-- **Stricter retry policy?** Change the retry count or delay. For rate-limited APIs, use exponential backoff (30s, then 60s, then 120s).
-- **Failure alerting?** Create a separate hook that watches failed-jobs.log and sends an alert when it grows beyond a threshold.
-- **Team meetings?** Add logic to distribute action items to team members via Slack or email (with approval per auto-resolver.md).
-
 Next lesson: you build the heartbeat -- the skill that monitors the agent itself.

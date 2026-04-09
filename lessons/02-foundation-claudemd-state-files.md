@@ -178,11 +178,4 @@ Your project should now contain: `CLAUDE.md`, `.claude/preferences.md`, `.claude
 
 ---
 
-## Fork It
-
-- **Different role?** Change preferences.md to reflect your actual job title, timezone, and tools.
-- **Different notification channel?** Replace Telegram with Slack, Discord, or email in preferences.md.
-- **Team agent?** Add a `team-members.md` file with names and roles. Reference it from CLAUDE.md.
-- **Existing project?** You can add `.claude/` and `CLAUDE.md` to any existing repo. The agent layer sits on top of your code.
-
 Next lesson: you add hooks to make the agent's behavior deterministic and get notifications on your phone.

@@ -266,12 +266,4 @@ Your `.claude/` directory should now contain: `skills/git-reviewer/SKILL.md`, `s
 
 ---
 
-## Fork It
-
-- **Standup format different at your company?** Edit the "Generate Standup" section. Some teams use "Done / Doing / Blocked", others use free-form. Change the template.
-- **Post directly to Slack?** Add a Slack webhook step in the Output section instead of Telegram. The agent drafts, you approve (per auto-resolver.md).
-- **Weekly summary instead of daily?** Change the schedule to Monday 9 AM and extend the lookback to 7 days. Same skill, different window.
-- **GitLab instead of GitHub?** Replace `gh` commands with `glab` or GitLab API. The categorization logic stays identical.
-- **Include Jira/Linear updates?** Add a step that reads from your issue tracker. The standup generator is designed to be extended -- just add another input source.
-
 Next lesson: you build the meeting ingest skill and add proper failure handling to the entire system.

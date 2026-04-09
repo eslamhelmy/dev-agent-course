@@ -318,11 +318,4 @@ Your `.claude/` directory should now contain: `priority-map.md`, `tasks-complete
 
 ---
 
-## Fork It
-
-- **Include calendar data?** If you have Google Calendar or Outlook access, add a step that reads today's meetings before scoring.
-- **Weekly planner instead?** Create a `weekly-planner/SKILL.md` that runs on Friday afternoon and plans the entire next week.
-- **Different scoring criteria?** Modify the scoring section to weight what matters to you: code reviews completed, PRs merged, documentation written.
-- **Team daily?** Add steps that pull team standup notes and include them in the summary.
-
 Next lesson: you build a PR review agent that monitors your GitHub repos.

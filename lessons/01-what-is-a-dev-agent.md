@@ -117,16 +117,4 @@ By lesson 11, you will have built all of this.
 
 ---
 
-## Fork It
-
-Before you start building, think about your own workflow:
-
-- What notifications do you want on your phone? Telegram? Slack? Discord?
-- What repos do you need monitored?
-- Do you have meeting transcripts to ingest?
-- What does your daily standup look like?
-- What recurring tasks could be automated?
-
-The system you build will be personal. The architecture is universal. The skills are yours to customize.
-
 Next lesson: you start building.

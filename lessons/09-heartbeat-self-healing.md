@@ -277,13 +277,4 @@ Your `.claude/` directory should now contain: `skills/heartbeat/SKILL.md` and `c
 
 ---
 
-## Fork It
-
-- **More frequent heartbeat?** Change to every hour (`0 * * * *`) if you are running many skills and want faster detection.
-- **Less frequent?** Every 4 hours (`0 */4 * * *`) is reasonable for lighter workloads.
-- **Custom checks?** Add skill-specific health checks. For example: "Is the PR review digest less than 24 hours old?" or "Has the standup been generated today?"
-- **Health dashboard?** Write a simple script that reads the latest heartbeat report and displays it as a terminal dashboard.
-- **Escalation chain?** First heartbeat failure = log only. Second consecutive failure = Telegram. Third = email. Adjust the notification logic in the State Update section.
-- **Team heartbeat?** Add checks for team-shared resources: shared repos, deployment pipelines, shared Slack channels.
-
 Next lesson: you put it all together, review the complete system, and ship it.

@@ -121,11 +121,4 @@ You now have: tmux keeping your agent session alive, Tailscale making your machi
 
 ---
 
-## Fork It
-
-- **Don't use Termius?** Any SSH client works — Blink Shell (iOS), JuiceSSH (Android), or plain `ssh` from another machine
-- **Don't want Tailscale?** Any VPN or port forwarding works — Tailscale is just the easiest zero-config option
-- **Want a web terminal?** ttyd or Wetty can expose tmux over HTTPS — but adds complexity
-- **Corporate network blocks Tailscale?** Use Cloudflare Tunnel or plain WireGuard instead
-
 Next lesson: you put it all together, review the complete system, and ship it.

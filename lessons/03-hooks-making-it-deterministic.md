@@ -188,11 +188,4 @@ Your `.claude/` directory should now contain: `preferences.md`, `tasks-active.md
 
 ---
 
-## Fork It
-
-- **Slack instead of Telegram?** Replace the curl call in `stop-telegram.sh` with a Slack webhook POST. Same structure, different URL.
-- **Discord?** Use a Discord webhook URL. The payload format changes slightly, but the hook pattern stays identical.
-- **More safety gates?** Add checks for `rm -rf`, `DROP TABLE`, or any command you consider dangerous. Each check is an `if` block that exits with code 2.
-- **Audit logging?** Add a `PostToolUse` hook that appends every tool call to a log file. Full visibility into what the agent does.
-
 Next lesson: you give the agent a learning system so it remembers its mistakes and improves over time.
