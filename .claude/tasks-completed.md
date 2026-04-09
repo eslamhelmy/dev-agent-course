@@ -1,5 +1,5 @@
 # Completed Tasks
 
 ## [Date]
-- [x] Cloned dev-agent-course repo
+- [x] Cloned autonomous-dev-agent repo
 - [x] Read ARCHITECTURE.md
