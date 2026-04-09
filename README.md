@@ -39,15 +39,15 @@ Read [ARCHITECTURE.md](ARCHITECTURE.md), edit `.claude/preferences.md` with your
     heartbeat/SKILL.md               # Self-monitoring every 2h
 ```
 
+## Learn How to Build This
+
+Want to understand why every file exists? Read the [step-by-step course (8 lessons)](https://eslamhelmy.tech/blog/dev-agent-course) — it explains the thinking behind each decision.
+
 ## Who Made This
 
 Built by [Eslam Helmy](https://github.com/eslamhelmy) -- Lead Engineer at Edenred UAE, YouTube [@arabdevsimplified](https://youtube.com/@arabdevsimplified).
 
 If this is useful, a star helps others find it.
-
-## Learn How to Build This
-
-Want to understand why every file exists? Read the [step-by-step course (8 lessons)](https://eslamhelmy.tech/blog/dev-agent-course) — it explains the thinking behind each decision.
 
 ## License
 
