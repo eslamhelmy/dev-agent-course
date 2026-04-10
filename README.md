@@ -6,8 +6,6 @@
 [![Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-blueviolet)](https://claude.ai/claude-code)
 [![Course](https://img.shields.io/badge/Course-8%20Lessons-blue)](https://eslamhelmy.tech/blog/dev-agent-course)
 
-A persistent developer agent that works while you work. It reviews PRs, summarizes commits, generates standups, ingests meetings, learns from every correction, and self-heals when things break. No frameworks. No cloud services. Just files, cron jobs, and a feedback loop.
-
 ## What It Does
 
 | Skill | Schedule | What Happens |
