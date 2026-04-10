@@ -77,7 +77,7 @@ Want to understand why every file exists and how to build this from scratch?
 
 ## Author
 
-Built by **[Eslam Helmy](https://github.com/eslamhelmy)** — Lead Engineer at Edenred UAE.
+Built by **[Eslam Helmy](https://github.com/eslamhelmy)**
 
 YouTube: [@arabdevsimplified](https://youtube.com/@arabdevsimplified) | Blog: [eslamhelmy.tech](https://eslamhelmy.tech)
 
