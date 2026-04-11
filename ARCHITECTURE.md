@@ -51,13 +51,13 @@ Hooks are registered in `.claude/settings.json` (included in this repo). To enab
 
 The `settings.json` includes a permissions allowlist for safe operations — read-only tools and git read commands run without prompting. Force pushes and destructive deletes are explicitly denied.
 
-Once you trust the agent after running it for a while, you can switch to `bypassPermissions` mode to skip all prompts:
+Once you trust the agent after running it for a while, you can skip all permission prompts:
 
 ```bash
-claude --permission-mode bypassPermissions
+claude --dangerously-skip-permissions
 ```
 
-Writes to `.git` and `.claude` still prompt even in bypass mode (safety net). Start with the default allowlist, expand it as you build trust.
+The name is intentionally alarming — Anthropic wants you to think twice. Deny rules in `settings.json` still apply even in this mode (force push and recursive delete are still blocked). Start with the default allowlist, expand it as you build trust, and only use `--dangerously-skip-permissions` when you're confident in your deny rules.
 
 ## Skills
 
